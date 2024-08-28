@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgba(199, 199, 199, 0.801);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 50px auto;
+}
+
+.box {
+  width: 600px;
+  height: 800px;
+  background-color: rgba(0, 255, 255, 0.753);
+  border-radius: 25px;
+  border: 3px solid #db6969;
+  margin: 0 auto;
+  padding: 30px 50px;
+}
+
+.output {
+  width: 500px;
+  height: 100px;
+  background-color: rgb(77, 77, 250);
+  border-radius: 30px;
+  margin: 0px auto;
+}
+
+.input-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 15px;
+  grid-auto-flow: row;
+  margin-top: 40px;
+}
+
+.key {
+  width: 100px;
+  height: 100px;
+  font-size: 36px;
+  background-color: rgba(218, 218, 218, 0.795);
+  padding-top: 30px;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 5px 5px #ff7e7e;
+  transition: box-shadow 0.4s ease;
+}
+
+.key:hover {
+  box-shadow: 8px 8px #db6969;
+}
+
+.add,
+.equal {
+  height: 215px;
+  padding-top: 90px;
+}
+
+.add {
+  grid-column: 4 / 5;
+  grid-row: 2 / span 2;
+}
+
+.equal {
+  grid-column: 4 / 5;
+  grid-row: 4 / span 2;
+}
+
+.zero {
+  width: 230px;
+  grid-column: 1 / span 2;
+  grid-row: 5 / 6;
+}
