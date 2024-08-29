@@ -9,22 +9,27 @@ let secondNumber = "";
 let operator = "";
 
 function define(value) {
-  console.log(value);
-  let strOut = output.innerHTML;
   switch (value) {
     case "C":
       clear();
       break;
     case ".":
-      output.innerHTML += ".";
+      if (
+        output.classList.contains("oper") &&
+        !output.classList.contains("sec-dot")
+      ) {
+        secondNumber += ".";
+        output.classList.add("sec-dot");
+      } else if (!output.classList.contains("first-dot")) {
+        firstNumber += ".";
+        output.classList.add("first-dot");
+      }
       break;
     default:
       if (isNaN(+value)) {
         if (value === "=") {
           firstNumber = math();
-          operator = "";
-          secondNumber = "";
-          output.classList.remove("oper");
+          clear(toCeil(+firstNumber));
         } else {
           operator = value;
           output.classList.add("oper");
@@ -39,7 +44,9 @@ function define(value) {
       break;
   }
 
-  outputResult();
+  output.innerHTML = `${toCeil(+firstNumber)}${operator}${toCeil(
+    +secondNumber
+  )}`.slice(0, 14);
 }
 
 function math() {
@@ -57,18 +64,17 @@ function math() {
   }
 }
 
-function clear() {
-  firstNumber = "";
+function clear(firstNum = "") {
+  firstNumber = firstNum;
   secondNumber = "";
   operator = "";
   output.classList.remove("oper");
+  output.classList.remove("first-dot");
+  output.classList.remove("sec-dot");
   output.innerHTML = "";
 }
 
-function outputResult() {
-  if (output.innerHTML.length < 14) {
-    output.innerHTML = `${firstNumber} ${operator} ${secondNumber}`;
-  } else {
-    clear();
-  }
+function toCeil(number) {
+  let result = Math.ceil(number * 100) / 100;
+  return result === 0 ? "" : result;
 }
